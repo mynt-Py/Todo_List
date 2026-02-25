@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://todo-list-qpuy.onrender.com';
 let currentUserId = localStorage.getItem('user_id');
 let currentUsername = localStorage.getItem('username');
 let currentTodos = [];
