@@ -1,14 +1,8 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
-from fastapi.staticfiles import StaticFiles
-from flask import app
 from pydantic import BaseModel
 from typing import Optional
-from fastapi.responses import HTMLResponse
-from fastapi import Request
-from fastapi.templating import Jinja2Templates
-
 import os
 from dotenv import load_dotenv
 
@@ -17,14 +11,7 @@ from datetime import datetime
 
 from supabase import create_client
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
-
-@app.get("/", response_class=HTMLResponse)
-def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
-
-app.mount("/", StaticFiles(directory=".", html=True), name="static")
+app = FastAPI(title="Todo List (Supabase)")
 
 app.add_middleware(
     CORSMiddleware,
