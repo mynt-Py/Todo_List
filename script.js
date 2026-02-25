@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000/api';
+const API_URL = 'http://localhost:8000';
 let currentUserId = localStorage.getItem('user_id');
 let currentUsername = localStorage.getItem('username');
 let currentTodos = [];
