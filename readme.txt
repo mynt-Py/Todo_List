@@ -8,7 +8,7 @@ and can be accessed via this link http://127.0.0.1:5500/index.html
 1.Install the required dependencies:
 	pip install -r requirements.txt
 
-2.Create a .env file and add your Supabase credentials:
+2.Open a .env file and add your Supabase credentials:
 	SUPABASE_URL=your_supabase_url
 	SUPABASE_KEY=your_supabase_key
 
