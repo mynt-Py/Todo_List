@@ -143,7 +143,7 @@ async function updateStatus(taskId, newStatus) {
 
 async function deleteTask(taskId) {
     if (confirm('Are you sure you want to delete this task?')) {
-        await fetch(`${API_URL}/tasks/${taskId}/`, {
+        await fetch(`${API_URL}/tasks/${taskId}`, {
             method: 'DELETE'
         });
         loadData();

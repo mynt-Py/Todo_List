@@ -31,7 +31,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Supabase client (requires SUPABASE_URL and SUPABASE_KEY environment variables)
 SUPABASE_URL = os.getenv('SUPABASE_URL')
 SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 if not SUPABASE_URL or not SUPABASE_KEY:
