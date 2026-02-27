@@ -1,17 +1,27 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 from typing import Optional
-import os
 from dotenv import load_dotenv
+import os
+
 
 load_dotenv()
 from datetime import datetime
 
 from supabase import create_client
 
-app = FastAPI(title="Todo List (Supabase)")
+app = FastAPI(title="Todo List")
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
+
+@app.get("/")
+def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 app.add_middleware(
     CORSMiddleware,
@@ -28,7 +38,6 @@ if not SUPABASE_URL or not SUPABASE_KEY:
     raise RuntimeError('Please set SUPABASE_URL and SUPABASE_KEY environment variables')
 
 sb = create_client(SUPABASE_URL, SUPABASE_KEY)
-
 
 class UserAuth(BaseModel):
     username: str
